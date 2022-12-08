@@ -1,15 +1,12 @@
 const request = require("request");
+const getForecast = require("./utils/getForecast");
+const getTemperature = require("./utils/getTemperature");
 
-const url =
-  "http://api.weatherstack.com/current?access_key=4fbc3a4c47738ac61a6f4cf7a01619c9&query=India";
 
-request({ url: url, json: true }, (error, response) => {
+getTemperature((process.argv[2]), (error, response) => {
   if (error) {
-    console.log("UNABLE TO CONNECT TO WHEATHERSTACK API");
-  } else if (response.body.error) {
-    console.log("UNABLE TO FIND REQUIRED OUTPUT");
+    console.log(error);
   } else {
-    // const responseJSON = JSON.parse(response.body);
-    console.log("TEMPERATURE " + response.body.current.temperature);
+    console.log(response);
   }
-});
+}); 
